@@ -32,8 +32,7 @@ void PhoneBook::print_width_10(const std::string& str){
 		tmp.append(".");
 	}
 	std::cout << "|";
-	std::cout.width(10);
-	std::cout << tmp;
+	std::cout << std::setw(10) << tmp;
 }
 
 void PhoneBook::add_contact(){
