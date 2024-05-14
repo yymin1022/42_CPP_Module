@@ -17,14 +17,14 @@ Fixed& Fixed::operator=(const Fixed& obj){
 	std::cout << "Copy assignment operator called" << std::endl;
 
 	if(this != &obj)
-		value = obj.getRawBits();
+		this->value = obj.getRawBits();
 	return *this;
 }
 
 int Fixed::getRawBits() const{
 	std::cout << "getRawBits member function called" << std::endl;
 
-	return value;
+	return this->value;
 }
 
 void Fixed::setRawBits(int const raw){
