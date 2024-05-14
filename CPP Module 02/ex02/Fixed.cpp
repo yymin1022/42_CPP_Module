@@ -122,7 +122,7 @@ void Fixed::setRawBits(int const raw){
 }
 
 int Fixed::toInt() const{
-	return value >> bits;
+	return this->value >> this->bits;
 }
 
 float Fixed::toFloat() const{
