@@ -27,7 +27,7 @@ Fixed& Fixed::operator=(const Fixed& obj){
 	std::cout << "Copy assignment operator called" << std::endl;
 
 	if(this != &obj)
-		value = obj.getRawBits();
+		this->value = obj.getRawBits();
 	return *this;
 }
 
@@ -112,7 +112,7 @@ const Fixed& Fixed::max(const Fixed& a, const Fixed& b){
 int Fixed::getRawBits() const{
 	std::cout << "getRawBits member function called" << std::endl;
 
-	return value;
+	return this->value;
 }
 
 void Fixed::setRawBits(int const raw){
@@ -126,7 +126,7 @@ int Fixed::toInt() const{
 }
 
 float Fixed::toFloat() const{
-	return static_cast<float>(value) / (1 << bits);
+	return static_cast<float>(this->value) / (1 << this->bits);
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& obj){
