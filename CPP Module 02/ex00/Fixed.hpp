@@ -13,7 +13,7 @@ public:
 	~Fixed();
 	Fixed& operator=(const Fixed& obj);
 	int getRawBits() const;
-	void setRawBits(int const raw);
+	void setRawBits(const int raw);
 };
 
 #endif
