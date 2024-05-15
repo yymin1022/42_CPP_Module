@@ -11,8 +11,8 @@ private:
 public:
 	Fixed();
 	Fixed(const Fixed& obj);
-	Fixed(int const value);
-	Fixed(float const value);
+	Fixed(const int value);
+	Fixed(const float value);
 	~Fixed();
 
 	Fixed& operator=(const Fixed& obj);
@@ -38,7 +38,7 @@ public:
 	static const Fixed& max(const Fixed& a, const Fixed& b);
 
 	int getRawBits() const;
-	void setRawBits(int const raw);
+	void setRawBits(const int raw);
 	int toInt() const;
 	float toFloat() const;
 };

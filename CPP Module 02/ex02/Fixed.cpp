@@ -6,11 +6,11 @@ Fixed::Fixed(const Fixed& obj){
 	*this = obj;
 }
 
-Fixed::Fixed(int const value){
+Fixed::Fixed(const int value){
 	this->value = value << this->bits;
 }
 
-Fixed::Fixed(float const value){
+Fixed::Fixed(const float value){
 	this->value = roundf(value * (1 << this->bits));
 }
 
@@ -104,7 +104,7 @@ int Fixed::getRawBits() const{
 	return this->value;
 }
 
-void Fixed::setRawBits(int const raw){
+void Fixed::setRawBits(const int raw){
 	this->value = raw;
 }
 
