@@ -24,7 +24,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& obj){
     return *this;
 }
 
-ClapTrap::ClapTrap(std::string name): name(name), hit_points(10), energy_points(10), attack_damage(0), _maxHitPoints(10){
+ClapTrap::ClapTrap(std::string name): name(name), hit_points(10), energy_points(10), attack_damage(0){
     std::cout << "ClapTrap constructor called" << std::endl;
 }
 
@@ -33,7 +33,7 @@ void ClapTrap::attack(const std::string& target)
     if (this->energy_points > 0)
     {
         (this->energy_points)--;
-        std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+        std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
     }else{
         std::cout << "ClapTrap " << this->name << " has no energy points!" << std::endl;
 	}
@@ -46,7 +46,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 		if(this->hit_points < 0){
 			this->hit_points = 0;
 		}
-        std::cout << this->name << " takes damage!" << this->hit_points << " hit points left." std::endl;
+        std::cout << this->name << " takes damage!" << this->hit_points << " hit points left." << std::endl;
     }else{
         std::cout << this->name << " is already dead!" << std::endl;
 	}
