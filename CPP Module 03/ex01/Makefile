@@ -1,8 +1,8 @@
 CC = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = ClapTrap
-SRC = main.cpp ClapTrap.cpp
+NAME = ScavTrap
+SRC = main.cpp ClapTrap.cpp ScavTrap.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
