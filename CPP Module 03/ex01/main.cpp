@@ -2,6 +2,9 @@
 
 int main(){
 	ScavTrap scavtrap1("Scavtrap");
+	ScavTrap scavtrap2(scavtrap1);
+	ScavTrap scavtrap3;
+	scavtrap3 = scavtrap1;
 
 	scavtrap1.attack("target");
 	scavtrap1.takeDamage(5);
