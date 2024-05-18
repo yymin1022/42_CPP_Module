@@ -12,7 +12,6 @@ public:
 	~FragTrap();
 	FragTrap& operator=(const FragTrap& obj);
 
-	void beRepaired(unsigned int amount);
 	void highFivesGuys(void);
 };
 

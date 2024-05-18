@@ -1,6 +1,6 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(): name("ClapTrap"), hit_points(10), energy_points(10), attack_damage(0){
+ClapTrap::ClapTrap(): name("ClapTrap"), hit_points(10), energy_points(10), attack_damage(0), max_hp(10){
     std::cout << "ClapTrap Default Constructor Called" << std::endl;
 }
 
@@ -19,12 +19,13 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& obj){
         this->hit_points = obj.hit_points;
         this->energy_points = obj.energy_points;
         this->attack_damage = obj.attack_damage;
+		this->max_hp = obj.max_hp;
     }
 
     return *this;
 }
 
-ClapTrap::ClapTrap(std::string name): name(name), hit_points(10), energy_points(10), attack_damage(0){
+ClapTrap::ClapTrap(std::string name): name(name), hit_points(10), energy_points(10), attack_damage(0), max_hp(10){
     std::cout << "ClapTrap constructor called" << std::endl;
 }
 
@@ -42,10 +43,10 @@ void ClapTrap::attack(const std::string& target)
 void ClapTrap::takeDamage(unsigned int amount)
 {
     if (this->hit_points > 0){
-        this->hit_points -= amount;
-		if(this->hit_points < 0){
-			this->hit_points = 0;
+		if (amount > hit_points){
+			amount = hit_points;
 		}
+        this->hit_points -= amount;
         std::cout << this->name << " takes damage! " << this->hit_points << " hit points left." << std::endl;
     }else{
         std::cout << this->name << " is already dead!" << std::endl;
@@ -55,14 +56,19 @@ void ClapTrap::takeDamage(unsigned int amount)
 void ClapTrap::beRepaired(unsigned int amount){
 	if(this->energy_points == 0){
 		std::cout << this->name << " has no energy points!" << std::endl;
-	}else if(this->hit_points == 10){
+	}else if(this->hit_points == this->max_hp){
 		std::cout << this->name << " is already full hit points!" << std::endl;
 	}else{
-		this->hit_points += amount;
-		if(this->hit_points > 10){
-			this->hit_points = 10;
+		if(amount > this->max_hp){
+			amount = this->max_hp;
 		}
-        (this->energy_points)--;
-        std::cout << this->name << " is repaired! Now hit points is full! " << this->energy_points << " energy points left." << std::endl;
-    }
+		if(amount + this->hit_points > this->max_hp){
+			amount = this->max_hp - this->hit_points;
+			this->hit_points = this->max_hp;
+		}else{
+			this->hit_points += amount;
+		}
+		(this->energy_points)--;
+		std::cout << this->name << " is repaired! Now hit points is full! " << this->energy_points << " energy points left." << std::endl;
+	}
 }
