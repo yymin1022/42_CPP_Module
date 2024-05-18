@@ -9,7 +9,7 @@ ScavTrap::ScavTrap(): ClapTrap(){
 	this->max_hp = 100;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& obj){
+ScavTrap::ScavTrap(const ScavTrap& obj): ClapTrap(){
     std::cout << "ScavTrap copy constructor called" << std::endl;
     *this = obj;
 }
