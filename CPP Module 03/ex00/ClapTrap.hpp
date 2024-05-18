@@ -9,6 +9,7 @@ private:
 	unsigned int hit_points;
 	unsigned int energy_points;
 	unsigned int attack_damage;
+	unsigned int max_hp;
 public:
 	ClapTrap();
 	ClapTrap(const ClapTrap& obj);
