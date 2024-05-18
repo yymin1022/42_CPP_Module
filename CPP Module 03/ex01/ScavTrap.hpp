@@ -12,7 +12,7 @@ public:
 	~ScavTrap();
 	ScavTrap& operator=(const ScavTrap& obj);
 
-	void beRepaired(unsigned int amount);
+	void attack(const std::string& target);
 	void guardGate();
 };
 
