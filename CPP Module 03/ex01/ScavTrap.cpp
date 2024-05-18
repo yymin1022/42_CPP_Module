@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(): ClapTrap(){
+ScavTrap::ScavTrap(){
     std::cout << "ScavTrap Default Constructor Called" << std::endl;
     this->name = "ScavTrap";
     this->attack_damage = 20;
