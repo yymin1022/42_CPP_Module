@@ -9,7 +9,7 @@ FragTrap::FragTrap(){
 	this->max_hp = 100;
 }
 
-FragTrap::FragTrap(const FragTrap& obj){
+FragTrap::FragTrap(const FragTrap& obj): ClapTrap(){
     std::cout << "FragTrap copy constructor called" << std::endl;
     *this = obj;
 }
