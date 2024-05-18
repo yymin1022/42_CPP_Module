@@ -1,8 +1,8 @@
 #include "Animal.hpp"
 
 Animal::Animal(){
-	this->type = "Animal";
 	std::cout << "Animal default constructor called" << std::endl;
+	this->type = "Animal";
 }
 
 Animal::Animal(const Animal& obj){
