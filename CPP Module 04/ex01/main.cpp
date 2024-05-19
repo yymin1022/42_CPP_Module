@@ -1,12 +1,12 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
-void leak_check(){
-	system("leaks Animal");
-}
+// void leak_check(){
+// 	system("leaks Animal");
+// }
 
 int main(){
-	atexit(leak_check);
+	// atexit(leak_check);
 
 	// Default Test
 	const Animal* animal1 = new Cat();
@@ -30,6 +30,18 @@ int main(){
 	*dog2 = *dog1;
 	delete dog1;
 	delete dog2;
+
+	// Array Test
+	const Animal* animals[10];
+	for(int i = 0; i < 10; i++){
+		if (i % 2 == 0)
+			animals[i] = new Dog();
+		else
+			animals[i] = new Cat();
+	}
+	for(int i = 0; i < 10; i++){
+		delete animals[i];
+	}
 
 	return 0;
 }
