@@ -6,7 +6,7 @@ Cat::Cat(){
 	this->type = "Cat";
 }
 
-Cat::Cat(const Cat& obj): Animal(obj){
+Cat::Cat(const Cat& obj): AAnimal(obj){
 	std::cout << "Cat copy constructor called" << std::endl;
 	this->brain = new Brain(*obj.brain);
 }
