@@ -24,7 +24,3 @@ AAnimal& AAnimal::operator=(const AAnimal& obj){
 std::string AAnimal::getType() const{
 	return this->type;
 }
-
-void AAnimal::makeSound() const{
-	std::cout << "I am an AAnimal:! I am an AAnimal:!" << std::endl;
-}
