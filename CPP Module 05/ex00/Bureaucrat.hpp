@@ -5,15 +5,15 @@
 
 class Bureaucrat{
 private:
-	std::string const Name;
+	std::string const name;
 	int grade;
 
 public:
 	Bureaucrat();
 	Bureaucrat(std::string Name, int Grade);
-	Bureaucrat(Bureaucrat const & src);
+	Bureaucrat(Bureaucrat const& src);
 	~Bureaucrat();
-	Bureaucrat & operator=(Bureaucrat const & obj);
+	Bureaucrat& operator=(Bureaucrat const& obj);
 
 	std::string getName() const;
 	int getGrade() const;
