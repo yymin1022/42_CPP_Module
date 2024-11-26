@@ -32,4 +32,6 @@ public:
 	};
 };
 
+std::ostream& operator<<(std::ostream& o, Bureaucrat const& obj);
+
 #endif
