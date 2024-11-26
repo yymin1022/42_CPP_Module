@@ -7,16 +7,16 @@
 class Form{
 private:
 	std::string name;
-	bool isSigned;
+	bool isSignedFlag;
 	int gradeLevelExec;
 	int gradeLevelSign;
 
 public:
 	Form();
 	Form(const std::string name, int signGrade, int execGrade);
-	Form(Form const& oldForm);
+	Form(Form const& src);
 	~Form();
-	Form &operator=(Form const& toCopy);
+	Form &operator=(Form const& obj);
 
 	std::string getName() const;
 	int getSignGrade() const;
