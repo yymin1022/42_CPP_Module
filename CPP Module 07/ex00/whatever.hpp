@@ -15,8 +15,21 @@ const T2 &min(const T2 &x ,const T2 &y){
 
 template<typename T3>
 
-void swap(T3 &x, T3 &y){
-	T3 tmp = x;
+T3 &max(T3 &x ,T3 &y){
+	return (x >= y ? x : y);
+}
+
+
+template<typename T4>
+
+T4 &min(T4 &x ,T4 &y){
+	return (x <= y ? x : y);
+}
+
+template<typename T5>
+
+void swap(T5 &x, T5 &y){
+	T5 tmp = x;
 	x = y;
 	y = tmp;
 }
