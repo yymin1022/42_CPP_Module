@@ -1,74 +1,128 @@
+#include "Intern.hpp"
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
 int main(){
-    Bureaucrat bob("Bob", 1);
-    Bureaucrat alice("Alice", 150);
-    std::cout << bob << std::endl;
-    std::cout << alice << std::endl;
+	Intern intern;
+	AForm* form;
 
-    std::cout << "\n\n";
+	try{
+		std::cout << "Bureaucrat 'A' grade '1'\n\n";
+		Bureaucrat A("A", 1);
+		std::cout << A << "\n\n";
 
-    ShrubberyCreationForm shrubbery("Garden");
-    RobotomyRequestForm robotomy("Robot");
-    PresidentialPardonForm pardon("Prisoner");
-    bob.signForm(shrubbery);
-    bob.executeForm(shrubbery);
-    bob.signForm(robotomy);
-    bob.executeForm(robotomy);
-    try{
-        bob.executeForm(pardon);
-    }catch(const std::exception &e){
-        std::cerr << e.what() << std::endl;
-    }
-    bob.signForm(pardon);
-    bob.executeForm(pardon);
+		form = intern.makeForm("shrubbery creation", "target1");
+		if(form){
+			A.signForm(*form);
+			A.executeForm(*form);
+			delete form;
+		}
 
-    std::cout << "\n\n";
+		form = intern.makeForm("robotomy request", "target1");
+		if(form){
+			A.signForm(*form);
+			A.executeForm(*form);
+			delete form;
+		}
 
-    try{
-        alice.executeForm(shrubbery);
-    }catch(const std::exception &e){
-        std::cerr << e.what() << std::endl;
-    }
+		form = intern.makeForm("presidential pardon", "target1");
+		if(form){
+			A.signForm(*form);
+			A.executeForm(*form);
+			delete form;
+		}
+	}catch(const std::exception& e){
+		std::cerr << e.what() << '\n';
+	}
 
-    try{
-        alice.signForm(shrubbery);
-    }catch(const std::exception &e){
-        std::cerr << e.what() << std::endl;
-    }
+	try{
+		std::cout << "\n\nBureaucrat 'B' grade '50'\n\n";
+		Bureaucrat B("B", 50);
+		std::cout << B << "\n\n";
 
-    try{
-        alice.executeForm(shrubbery);
-    }catch(const std::exception &e){
-        std::cerr << e.what() << std::endl;
-    }
+		form = intern.makeForm("shrubbery creation", "target2");
+		if(form){
+			B.signForm(*form);
+			B.executeForm(*form);
+			delete form;
+		}
 
-    try{
-        alice.signForm(robotomy);
-    }catch(const std::exception &e){
-        std::cerr << e.what() << std::endl;
-    }
+		form = intern.makeForm("robotomy request", "target2");
+		if(form){
+			B.signForm(*form);
+			B.executeForm(*form);
+			delete form;
+		}
 
-    try{
-        alice.executeForm(robotomy);
-    }catch(const std::exception &e){
-        std::cerr << e.what() << std::endl;
-    }
+		form = intern.makeForm("presidential pardon", "target2");
+		if(form){
+			B.signForm(*form);
+			B.executeForm(*form);
+			delete form;
+		}
+	}catch(const std::exception& e){
+		std::cerr << e.what() << '\n';
+	}
 
-    try{
-        alice.signForm(pardon);
-    }catch(const std::exception &e){
-        std::cerr << e.what() << std::endl;
-    }
+	try{
+		std::cout << "\n\nBureaucrat 'C' grade '150'\n\n";
+		Bureaucrat C("C", 150);
+		std::cout << C << "\n\n";
 
-    try{
-        alice.executeForm(pardon);
-    }catch(const std::exception &e){
-        std::cerr << e.what() << std::endl;
-    }
+		form = intern.makeForm("shrubbery creation", "target3");
+		if(form){
+			C.signForm(*form);
+			C.executeForm(*form);
+			delete form;
+		}
+
+		form = intern.makeForm("robotomy request", "target3");
+		if(form){
+			C.signForm(*form);
+			C.executeForm(*form);
+			delete form;
+		}
+
+		form = intern.makeForm("presidential pardon", "target3");
+		if(form){
+			C.signForm(*form);
+			C.executeForm(*form);
+			delete form;
+		}
+	}catch(const std::exception& e){
+		std::cerr << e.what() << '\n';
+	}
+
+	try{
+		std::cout << "\n\nBureaucrat 'D' grade '33'\n\n";
+		Bureaucrat D("D", 33);
+		std::cout << D << "\n\n";
+
+		form = intern.makeForm("Shrrrrrubbery creation", "target4");
+		if(form){
+			D.signForm(*form);
+			D.executeForm(*form);
+			delete form;
+		}
+
+		form = intern.makeForm("robotomyrequest", "target4");
+		if(form){
+			D.signForm(*form);
+			D.executeForm(*form);
+			delete form;
+		}
+
+		form = intern.makeForm("presidential pardon ", "target4");
+		if(form){
+			D.signForm(*form);
+			D.executeForm(*form);
+			delete form;
+		}
+	}catch(const std::exception& e){
+		std::cerr << e.what() << '\n';
+	}
 
 	return 0;
 }

@@ -1,8 +1,8 @@
 CC = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Form
-SRC = main.cpp AForm.cpp Bureaucrat.cpp \
+NAME = Intern
+SRC = main.cpp AForm.cpp Bureaucrat.cpp Intern.cpp \
 		PresidentialPardonForm.cpp \
 		RobotomyRequestForm.cpp \
 		ShrubberyCreationForm.cpp
