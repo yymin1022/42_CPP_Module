@@ -10,17 +10,17 @@ private:
 	const int gradeToSign;
 	const int gradeToExecute;
 
+	class FormAlreadySignedException: public std::exception{
+	public:
+		virtual const char *what() const throw();
+	};
+
 	class GradeTooHighException: public std::exception{
 	public:
 		virtual const char *what() const throw();
 	};
 
 	class GradeTooLowException: public std::exception{
-	public:
-		virtual const char *what() const throw();
-	};
-
-	class FormAlreadySignedException: public std::exception{
 	public:
 		virtual const char *what() const throw();
 	};
