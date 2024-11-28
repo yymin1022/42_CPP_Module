@@ -17,6 +17,9 @@ AForm::AForm(const AForm &other)
 AForm::~AForm(){}
 
 AForm& AForm::operator=(const AForm &other){
+    if(this != &other){
+        return *this;
+    }
     return *this;
 }
 
