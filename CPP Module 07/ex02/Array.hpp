@@ -21,8 +21,11 @@ public:
 
 	Array(const Array &src): _size(src.size()){
 		std::cout << "Copy Constuctor called" << std::endl;
-		this->_array = NULL;
-		*this = src;
+		this->_array = new T[src._size];
+		this->_size = src._size;
+
+		for(size_t i = 0; i < src._size; i++)
+			this->_array[i] = src._array[i];
 	}
 
 	~Array(){
@@ -31,9 +34,9 @@ public:
 	}
 
 	Array& operator=(const Array &src){
-		if(this->_array != NULL)
-			delete[] this->_array;
-		if(src.size() != 0){
+		if(this != src){
+			if(this->_array != NULL)
+				delete[] this->_array;
 			this->_size = src.size();
 			this->_array = new T[this->_size];
 			for(size_t i = 0; i < this->size(); i++)
