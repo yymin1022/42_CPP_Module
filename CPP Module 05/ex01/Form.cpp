@@ -52,12 +52,12 @@ const char *Form::FormAlreadySignedException::what() const throw(){
     return "Form is already signed";
 }
 
-const char *Form::GradeTooLowException::what() const throw(){
-    return "Grade is too low";
-}
-
 const char *Form::GradeTooHighException::what() const throw(){
     return "Grade is too high";
+}
+
+const char *Form::GradeTooLowException::what() const throw(){
+    return "Grade is too low";
 }
 
 std::ostream &operator<<(std::ostream &os, const Form &form){
