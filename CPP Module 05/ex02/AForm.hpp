@@ -35,7 +35,7 @@ protected:
 		virtual const char *what() const throw();
 	};
 
-class GradeTooHighException: public std::exception{
+	class GradeTooHighException: public std::exception{
 	public:
 		virtual const char *what() const throw();
 	};
