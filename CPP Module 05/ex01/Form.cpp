@@ -1,86 +1,71 @@
 #include "Form.hpp"
 
-Form::Form(){
-    this->name = "Unknown Form";
-    this->isSignedFlag = false;
-    this->gradeLevelSign = 150;
-    this->gradeLevelExec = 150;
+Form::Form()
+    : name("Default"), isSigned(false), gradeToSign(150), gradeToExecute(150){};
+
+Form::Form(const std::string &name, int gradeToSign, int gradeToExecute)
+    : name(name), isSigned(false), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute){
+    if(gradeToSign < 1 || gradeToExecute < 1)
+        throw Form::GradeTooHighException();
+    if(gradeToSign > 150 || gradeToExecute > 150)
+        throw Form::GradeTooLowException();
 }
 
-Form::Form(const std::string name, int signGrade, int execGrade){
-    this->name = name;
-    this->isSignedFlag = false;
-
-    if(signGrade < 1 || execGrade < 1)
-        throw gradeTooHighException();
-    else if(signGrade > 150 || execGrade > 150)
-        throw gradeTooLowException();
-    else if(signGrade > execGrade)
-        throw gradeTooHighException();
-    else{
-        this->gradeLevelSign = signGrade;
-        this->gradeLevelExec = execGrade;
-    }
-}
-
-Form::Form(Form const &src){
-    *this = src;
-}
+Form::Form(const Form &other)
+    : name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute){}
 
 Form::~Form(){}
 
-Form &Form::operator=(Form const &obj){
-    this->name = obj.name;
-    this->isSignedFlag = obj.isSignedFlag;
-    this->gradeLevelExec = obj.gradeLevelExec;
-    this->gradeLevelSign = obj.gradeLevelSign;
-    return (*this);
-}
-
-std::ostream &operator<<(std::ostream &out, Form const &obj){
-	out << obj.getName() << " Form:" << std::endl;
-	out << "Status:" << obj.isSigned() << std::endl;
-	out << "Grade to sign:" << obj.getSignGrade() << std::endl;
-	out << "Grade to execute:" << obj.getExecGrade() << std::endl;
-	return (out);
-}
-
-std::string Form::getName() const{
-    return (this->name);
-}
-
-int Form::getSignGrade() const{
-    return (this->gradeLevelSign);
-}
-
-int Form::getExecGrade() const{
-    return (this->gradeLevelExec);
-}
-
-std::string Form::isSigned() const{
-    if(isSignedFlag)
-        return "True";
-    else
-        return "False";
-}
-
-void Form::setSignature(Bureaucrat const &bcrat){
-	if(this->isSignedFlag == true)
-        std::cout << "Form already signed" << std::endl;
-    else if(this->gradeLevelSign < bcrat.getGrade()){
-        std::cout << "Bureucrat " << bcrat.getName() << " not qualified to sign this form." << std::endl;
-        throw gradeTooLowException();
-    }else{
-        this->isSignedFlag = true;
-        std::cout << "Bureucrat " << bcrat.getName() << " has signed the " << this->name << " form" << std::endl;
+Form &Form::operator=(const Form &other){
+    if(this != &other){
+        this->~Form();
+        new (this) Form(other);
     }
-
+    return *this;
 }
 
-const char *Form::gradeTooLowException::what() const throw(){
-    return "Bureucrats Grade is too low and cant sign this form";
+const std::string &Form::getName() const{
+    return name;
 }
 
-const char *Form::gradeTooHighException::what() const throw(){
-    return "Grade is too high should be between 1 & 150";
+bool Form::getIsSigned() const{
+    return isSigned;
+}
+
+int Form::getGradeToSign() const{
+    return gradeToSign;
+}
+
+int Form::getGradeToExecute() const{
+    return gradeToExecute;
+}
+
+void Form::makeSign(const Bureaucrat &bureaucrat){
+    if(isSigned)
+        throw Form::FormAlreadySignedException();
+    if(bureaucrat.getGrade() > gradeToSign)
+        throw Form::GradeTooLowException();
+    isSigned = true;
+}
+
+const char *Form::FormAlreadySignedException::what() const throw(){
+    return "Form is already signed";
+}
+
+const char *Form::GradeTooLowException::what() const throw(){
+    return "Grade is too low";
+}
+
+const char *Form::GradeTooHighException::what() const throw(){
+    return "Grade is too high";
+}
+
+std::ostream &operator<<(std::ostream &os, const Form &form){
+    if(form.getIsSigned())
+        os << form.getName() << " form is signed and grade to sign is " << form.getGradeToSign()
+           << " and grade to execute is " << form.getGradeToExecute();
+    else
+        os << form.getName() << " form is not signed and grade to sign is " << form.getGradeToSign()
+           << " and grade to execute is " << form.getGradeToExecute();
+    return os;
 }
