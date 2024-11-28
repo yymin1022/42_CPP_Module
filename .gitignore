@@ -4,8 +4,8 @@
 
 *
 
-!Makefile
-!*.cpp
-!*.hpp
-!*.c
-!*.h
+!**/Makefile
+!**/*.cpp
+!**/*.hpp
+!**/*.c
+!**/*.h
