@@ -50,6 +50,14 @@ public:
 		return (this->_array[index]);
 	}
 
+	const T& operator[](size_t index) const{
+		if(index >= this->_size || this->_array == NULL){
+			std::cout << "index: " << index << std::endl;
+			throw Array<T>::OutOfIndexException();
+		}
+		return (this->_array[index]);
+	}
+
 	class OutOfIndexException: public std::exception{
 	public:
 		virtual const char	*what() const throw();
