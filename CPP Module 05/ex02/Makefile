@@ -2,7 +2,10 @@ CC = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = Form
-SRC = main.cpp AForm.cpp Bureaucrat.cpp
+SRC = main.cpp AForm.cpp Bureaucrat.cpp \
+		PresidentialPardonForm.cpp \
+		RobotomyRequestForm.cpp \
+		ShrubberyCreationForm.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
