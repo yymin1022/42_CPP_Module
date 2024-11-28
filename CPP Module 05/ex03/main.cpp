@@ -34,7 +34,7 @@ int main(){
 			delete form;
 		}
 	}catch(const std::exception& e){
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
 
 	try{
@@ -63,7 +63,7 @@ int main(){
 			delete form;
 		}
 	}catch(const std::exception& e){
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
 
 	try{
@@ -92,7 +92,7 @@ int main(){
 			delete form;
 		}
 	}catch(const std::exception& e){
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
 
 	try{
@@ -121,7 +121,7 @@ int main(){
 			delete form;
 		}
 	}catch(const std::exception& e){
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
 
 	return 0;
