@@ -2,10 +2,4 @@
 .vscode/
 .DS_Store
 
-*
-
-!**/Makefile
-!**/*.cpp
-!**/*.hpp
-!**/*.c
-!**/*.h
+*.o
