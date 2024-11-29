@@ -10,8 +10,6 @@ int main(){
 	mstk.push(1234);
 	mstk.push(435);
 
-	std::cout << std::endl;
-
 	MutantStack<int>::iterator it = mstk.begin();
 	MutantStack<int>::iterator itEnd = mstk.end();
 
