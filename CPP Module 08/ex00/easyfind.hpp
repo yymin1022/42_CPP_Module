@@ -13,11 +13,11 @@ public:
 };
 
 template<typename T>
-typename T::iterator easyfind(T &in, int i){
+typename T::iterator easyfind(T& lst, int i){
 	typename T::iterator it;
-	it = find(in.begin(), in.end(), i);
+	it = find(lst.begin(), lst.end(), i);
 
-	if(it == in.end())
+	if(it == lst.end())
 		throw (NotFoundException());
 	return (it);
 }
