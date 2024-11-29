@@ -3,26 +3,42 @@
 #include "Span.hpp"
 
 int main(){
-	{
-		Span sp = Span(5);
-		sp.addNumber(6);
-		sp.addNumber(3);
-		sp.addNumber(17);
-		sp.addNumber(9);
-		sp.addNumber(11);
-		std::cout << sp.shortestSpan() << std::endl;
-		std::cout << sp.longestSpan() << std::endl;
+	Span sp = Span(100000);
+	sp.addNumber(1, 50000);
+	sp.addNumber(1000, 49998);
+	sp.addNumber(100000);
+
+	std::cout << "-----" << std::endl;
+
+	try{
+		sp.addNumber(100, 0);
+	}catch(const std::exception& e){
+		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << std::endl;
-	std::cout << std::endl;
+	std::cout << "-----" << std::endl;
 
-	{
-		Span a = Span(10000);
-		a.addNumber(10000, time(NULL));
-		std::cout << a.shortestSpan() << std::endl;
-		std::cout << a.longestSpan() << std::endl;
+	try{
+		sp.addNumber(100, 1000);
+	}catch(const std::exception& e){
+		std::cerr << e.what() << std::endl;
 	}
+
+	std::cout << "-----" << std::endl;
+
+	try{
+		sp.addNumber(10);
+		std::cout << "Now might be full\n";
+		sp.addNumber(10);
+		std::cout << "Must be error\n";
+	}catch(const std::exception& e){
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << "-----" << std::endl;
+
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
 
 	return 0;
 }
