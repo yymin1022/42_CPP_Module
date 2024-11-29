@@ -1,101 +1,97 @@
 #include "Span.hpp"
 
-Span::Span(): size(0), pos(0){}
+Span::Span()
+	: maxSize(0), lSpan(0), sSpan(0){}
 
-Span::Span(unsigned int N): size(N), pos(0){
-	std::cout << "Span Constructor for size of " << N << " called" << std::endl;
-	this->storage.reserve(this->getSize());
-}
+Span::Span(unsigned int N)
+	: maxSize(N), lSpan(0), sSpan(0){}
 
-Span::Span(const Span &src): size(src.getSize()), pos(src.getPos()){
-	std::cout << "Span Copy Constructor called" << std::endl;
-	*this = src;
-}
+Span::Span(const Span &src)
+	: storage(src.storage), maxSize(src.maxSize), lSpan(src.lSpan), sSpan(src.sSpan){}
 
-Span::~Span(){
-	std::cout << "Span Deconstructor called" << std::endl;
-}
+Span::~Span(){}
 
 Span &Span::operator=(const Span &src){
-	std::cout << "Span Assignation operator called" << std::endl;
-	if (this == &src)
-		return *this;
+	if(this != &src){
+		this->storage = src.storage;
+		this->maxSize = src.maxSize;
+		this->lSpan = src.lSpan;
+		this->sSpan = src.sSpan;
+	}
 	return *this;
 }
 
-void Span::addNumber(int number){
-	if((this->pos != 0 && this->storage.empty() == true) || this->storage.max_size() < this->getSize())
-		throw (Span::VectorInvalidException());
-	if(this->getPos() + 1 > this->getSize())
-		throw (Span::ArrayFullException());
-	else{
-		this->pos++;
-		this->storage.push_back(number);
-	}
-}
+void Span::addNumber(int num){
+	unsigned int curSize = storage.size();
 
-void Span::addNumber(unsigned int range, time_t seed){
-	srand(seed);
-	for(size_t i = 0; i < range; i++){
-		try{
-			addNumber(rand());
-		}catch(const std::exception& e){
-			std::cerr << e.what() << '\n';
+	if(curSize == maxSize)
+		throw ArrayFullException();
+	else if(curSize > 1){
+		unsigned int span;
+		unsigned int lastNum = static_cast<unsigned int>(storage.back());
+		unsigned int targetNum = static_cast<unsigned int>(num);
+
+		if(targetNum > lastNum)
+			span = targetNum - lastNum;
+		else
+			span = lastNum - targetNum;
+
+		if(curSize == 2){
+			sSpan = span;
+			lSpan = span;
+		}else{
+			sSpan = std::min(sSpan, span);
+			lSpan = std::max(lSpan, span);
 		}
 	}
+
+	storage.push_back(num);
 }
 
-unsigned int Span::shortestSpan(void) const{
-	if(this->pos == 1 || this->storage.size() == 1)
-		throw (Span::ComparisonInvalidException());
+void Span::addNumber(int num, unsigned int length){
+	if(length == 0)
+		throw InvalidArgumentException();
+	else if(length > maxSize - storage.size())
+		throw ArrayFullException();
 
-	std::vector<int> v(this->storage);
-	std::sort(v.begin(), v.end());
+	addNumber(num);
+	length--;
 
-	std::vector<int>::iterator temp_it = v.begin();
-	std::vector<int>::iterator temp_it_next = v.begin() + 1;
-	unsigned int ret = UINT_MAX;
-	while(temp_it_next != v.end()){
-		if((unsigned int)(*temp_it_next - *temp_it) < ret)
-			ret = *temp_it_next - *temp_it;
-		++temp_it_next;
-		++temp_it;
+	if(length > 0){
+		sSpan = 0;
+		if(storage.size() == 1)
+			lSpan = 0;
+		storage.insert(storage.end(), length, num);
 	}
-	return (ret);
 }
 
 unsigned int Span::longestSpan(void)const{
-	if(this->pos == 1 || this->storage.size() == 1)
-		throw (Span::ComparisonInvalidException());
-
-	std::vector<int> v(this->storage);
-	int low, high;
-
-	std::sort(v.rbegin(), v.rend());
-	high = *v.begin();
-
-	std::sort(v.begin(), v.end());
-	low = *v.begin();
-
-	return (high - low);
+	if(storage.size() < 2)
+		throw ComparisonInvalidException();
+	return (lSpan);
 }
 
-unsigned int Span::getSize() const{
-	return (this->size);
+unsigned int Span::shortestSpan(void) const{
+	if(storage.size() < 2)
+		throw ComparisonInvalidException();
+	return (sSpan);
 }
 
-unsigned int Span::getPos() const{
-	return (this->pos);
-}
-
-const char *Span::VectorInvalidException::what() const throw(){
-	return ("Error: Invalid or broken vector");
+void Span::printData() const{
+	for(unsigned int i = 0; i < storage.size(); i++){
+		std::cout << storage[i] << " ";
+	}
+	std::cout << std::endl;
 }
 
 const char *Span::ArrayFullException::what() const throw(){
-	return ("Error: Array full");
+	return ("Error: Array is full");
+}
+
+const char *Span::InvalidArgumentException::what() const throw(){
+	return ("Error: Invalid Argument");
 }
 
 const char *Span::ComparisonInvalidException::what() const throw(){
-	return ("Error: more than one element in vector needed to be compared");
+	return ("Error: more than two element in vector needed to be compared");
 }
