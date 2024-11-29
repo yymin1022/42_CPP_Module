@@ -11,8 +11,9 @@
 class Span{
 private:
 	std::vector<int> storage;
-	unsigned int size;
-	unsigned int pos;
+	unsigned int maxSize;
+	unsigned int lSpan;
+	unsigned int sSpan;
 	Span();
 
 public:
@@ -21,20 +22,19 @@ public:
 	~Span();
 	Span &operator=(const Span &src);
 
-	void addNumber(int number);
-	void addNumber(unsigned int range, time_t seed);
+	void addNumber(int num);
+	void addNumber(int num, unsigned int length);
 	unsigned int shortestSpan()const;
 	unsigned int longestSpan()const;
 
-	unsigned int getSize()const;
-	unsigned int getPos()const;
+	void printData() const;
 
-	class VectorInvalidException: public std::exception{
+	class ArrayFullException: public std::exception{
 	public:
 		virtual const char *what() const throw();
 	};
 
-	class ArrayFullException: public std::exception{
+	class InvalidArgumentException: public std::exception{
 	public:
 		virtual const char *what() const throw();
 	};
