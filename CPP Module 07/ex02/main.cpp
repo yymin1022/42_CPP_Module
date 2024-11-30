@@ -4,6 +4,22 @@
 #define MAX_VAL 750
 int main(int, char**)
 {
+	Array<int> tmp(20);
+	for(int i = 0; i < 20; i++){
+		tmp[i] = 20 - i;
+	}
+
+	Array<int> tmpAssign = tmp;
+	Array<int> tmpCopy(tmp);
+
+	for(int i = 0; i < tmp.size(); i++){
+		std::cout << "tmp " << tmp[i] << " ";
+		std::cout << "tmpAssign " << tmpAssign[i] << " ";
+		std::cout << "tmpCopy " << tmpCopy[i] << std::endl;
+	}
+
+	std::cout << "==== Original Test ====" << std::endl;
+
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
