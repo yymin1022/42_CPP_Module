@@ -11,8 +11,8 @@
 
 class PmergeMe{
 private:
-    std::list<std::list<int>> dataList;
-    std::vector<std::vector<int>> dataVector;
+    std::list< std::list<int> > dataList;
+    std::vector< std::vector<int> > dataVector;
 
     int getJacobsthal(int k);
     int getSizeList();
@@ -26,7 +26,7 @@ private:
     void lastSortList(int idx);
     void lastSortVector(int idx);
 
-	std::list<std::list<int>>::iterator getIterL(int idx);
+	std::list< std::list<int> >::iterator getIterL(int idx);
     std::list<int>::iterator getIterLL(int idx1, int idx2);
 
 public:
@@ -36,10 +36,17 @@ public:
     ~PmergeMe();
     PmergeMe &operator=(const PmergeMe &obj);
 
-    std::list<int> getResultList();
-    std::vector<int> getResultVector();
+	int getElementSize();
     void sortList();
     void sortVector();
+
+    std::list<int> getResultList();
+    std::vector<int> getResultVector();
+
+	class PmergeException: public std::exception{
+	public:
+		virtual const char *what() const throw();
+	};
 };
 
 #endif
