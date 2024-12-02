@@ -30,9 +30,9 @@ int main(int argc, char **argv){
 		gettimeofday(&endList, 0);
 
 		std::cout << "Time to process a range of   " << pmerge.getElementSize()
-			<< " elements with std::Vector : " << getTime(startVector, endVector) << " us" << std::endl
+			<< " elements with std::vector : " << getTime(startVector, endVector) << " us" << std::endl
 			<< "Time to process a range of   " << pmerge.getElementSize()
-			<< " elements with std::List :   " << getTime(startList, endList) << " us" << std::endl;
+			<< " elements with std::list :   " << getTime(startList, endList) << " us" << std::endl;
 	}catch(const std::string& e){
 		std::cerr << e << std::endl;
 		return (1);
