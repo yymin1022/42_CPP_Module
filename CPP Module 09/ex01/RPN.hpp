@@ -17,6 +17,11 @@ public:
 
 	int getResult();
 	void input(char c);
+
+	class RpnException: public std::exception{
+	public:
+		virtual const char *what() const throw();
+	};
 };
 
 #endif
