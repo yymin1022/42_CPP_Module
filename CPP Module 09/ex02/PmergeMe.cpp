@@ -3,7 +3,7 @@
 PmergeMe::PmergeMe(){}
 
 PmergeMe::PmergeMe(const PmergeMe& obj){
-	(void)obj;
+	()
 }
 
 PmergeMe PmergeMe::operator=(const PmergeMe& obj){
