@@ -7,7 +7,7 @@ PmergeMe::PmergeMe(int argc, char **argv){
         int j = 0;
         while(argv[i][j]){
             if(!isdigit(argv[i][j++])){
-                throw std::string("Error");
+                throw PmergeException();
             }
         }
 
@@ -15,7 +15,7 @@ PmergeMe::PmergeMe(int argc, char **argv){
         std::stringstream ss(argv[i]);
         ss >> num;
         if(ss.fail() || num < 1){
-            throw std::string("Error");
+            throw PmergeException();
         }
 
         dataVector.push_back(std::vector<int>(1, num));
@@ -23,7 +23,8 @@ PmergeMe::PmergeMe(int argc, char **argv){
     }
 }
 
-PmergeMe::PmergeMe(const PmergeMe &copy) : dataVector(copy.dataVector), dataList(copy.dataList){}
+PmergeMe::PmergeMe(const PmergeMe &copy)
+	: dataList(copy.dataList), dataVector(copy.dataVector){}
 
 PmergeMe::~PmergeMe(){}
 
@@ -33,6 +34,10 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &copy){
         dataList = copy.dataList;
     }
     return *this;
+}
+
+int PmergeMe::getElementSize(){
+	return (dataVector.size());
 }
 
 int PmergeMe::getSizeList(){
@@ -125,6 +130,20 @@ void PmergeMe::sortList(){
     if(lstSize & 1){
         lastSortList(lstSize - 1);
     }
+}
+
+std::list< std::list<int> >::iterator PmergeMe::getIterL(int idx){
+	std::list< std::list<int> >::iterator iter = dataList.begin();
+	for(int i = 0; i < idx; i++)
+		iter++;
+	return (iter);
+}
+
+std::list<int>::iterator PmergeMe::getIterLL(int idx1, int idx2){
+	std::list<int>::iterator iter = (*getIterL(idx1)).begin();
+	for(int i = 0; i < idx2; i++)
+		iter++;
+	return (iter);
 }
 
 std::list<int> PmergeMe::getResultList(){
@@ -239,4 +258,8 @@ std::vector<int> PmergeMe::getResultVector(){
         retVec.push_back(dataVector[i][0]);
     }
     return retVec;
+}
+
+const char *PmergeMe::PmergeException::what() const throw(){
+	return ("Error");
 }
