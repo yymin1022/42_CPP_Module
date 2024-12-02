@@ -11,8 +11,8 @@
 
 class PmergeMe{
 private:
-    std::vector<std::vector<int>> v;
-    std::list<std::list<int>> l;
+    std::list<std::list<int>> dataList;
+    std::vector<std::vector<int>> dataVector;
 
     int getJacobsthal(int k);
     int getSizeList();
@@ -25,6 +25,9 @@ private:
     void insertVector(int idx, int insertIdx);
     void lastSortList(int idx);
     void lastSortVector(int idx);
+
+	std::list<std::list<int>>::iterator getIterL(int idx);
+    std::list<int>::iterator getIterLL(int idx1, int idx2);
 
 public:
     PmergeMe();
