@@ -56,7 +56,7 @@ float getValue(std::string line){
 	if(ss.fail())
 		throw std::string("Error: Invalid Value");
 	if(value < 0.0f)
-		throw std::string("Error: Positive Number not allowed");
+		throw std::string("Error: Negative Number not allowed");
 	if(value > 1000.0f)
 		throw std::string("Error: Large Number not allowed");
 	return (value);
