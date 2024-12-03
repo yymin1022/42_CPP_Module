@@ -3,8 +3,10 @@
 
 int main(int argc, char **argv){
 	try{
-		if(argc != 2)
+		if(argc < 2)
 			throw std::string("Error: No Argument");
+		else if(argc > 2)
+			throw std::string("Error: Too many Argument");
 
 		RPN rpn;
 		std::string expr(argv[1]);
